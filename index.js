@@ -54,9 +54,9 @@ const alterColour = (hex, percentage) => {
   
   const amount = Math.floor((percentage/100) * 255);
   
-  const newR = increaseRange(r + amount);
-  const newG = increaseRange(g + amount);
-  const newB = increaseRange(b + amount);
+  const newR = increaseRange(r, amount);
+  const newG = increaseRange(g, amount);
+  const newB = increaseRange(b, amount);
   return convertRGBToHex(newR, newG, newB);
 }
 

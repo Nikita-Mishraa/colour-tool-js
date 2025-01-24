@@ -18,9 +18,8 @@ toggleBtn.addEventListener('click', ()=>{
     lightenText.classList.add('unselected');
     darkenText.classList.remove('unselected');
   }
+  reset();
 })
-
-
 
 hexInput.addEventListener('keyup', () =>{
     const hex = hexInput.value;
@@ -83,9 +82,19 @@ const increaseRange = (hex, amount)=>{
 
 slider.addEventListener('input', ()=>{
   if(!isValidHex(hexInput.value)) return;
-  sliderText.textContent = `${slider.value}%`
-  const alteredHex = alterColour(hexInput.value, slider.value);
+  sliderText.textContent = `${slider.value}%`;
+
+  const valueAdd = toggleBtn.classList.contains('toggled') ? -slider.value : slider.value ;
+
+  const alteredHex = alterColour(hexInput.value, valueAdd);
   alteredColour.style.backgroundColor = alteredHex;
   alteredColourText.innerText = `Altered Colour ${alteredHex}`;
 })
+
+const reset = ()=>{
+  slider.value = 0;
+  sliderText.innerText = `0%`;
+  alteredColour.style.backgroundColor = hexInput.value;
+  alteredColourText.innerText = `Altered Colour ${hexInput.value}`;
+}
 
